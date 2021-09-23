@@ -7,7 +7,8 @@ var pdfs = [
         location_name: 'Profile',
         prefix: 'A',
         mp: 25.10,
-        file_name: 'a02500.p',
+        file_name: 'activity.pdf',
+        pathname: 'activity.pdf',
         subdivision: 'Southeast Sub',
         location_type: 'Profile',
         sheet_order: 1,
@@ -18,7 +19,8 @@ var pdfs = [
         location_name: 'indication',
         prefix: 'A',
         mp: 25.10,
-        file_name: 'a02500.i',
+        file_name: 'activity.pdf',
+        pathname: 'activity.pdf',
         subdivision: 'Southeast Sub',
         location_type: 'indication',
         sheet_order: 1,
@@ -29,7 +31,8 @@ var pdfs = [
         location_name: 'Profile',
         prefix: 'A',
         mp: 25.10,
-        file_name: 'a02500.p',
+        file_name: 'activity.pdf',
+        pathname: 'activity.pdf',
         subdivision: 'Southeast Sub',
         location_type: 'Profile',
         sheet_order: 1,
@@ -40,7 +43,8 @@ var pdfs = [
         location_name: 'Profile',
         prefix: 'A',
         mp: 25.10,
-        file_name: 'a02500.p',
+        file_name: 'activity.pdf',
+        pathname: 'activity.pdf',
         subdivision: 'Southeast Sub',
         location_type: 'Profile',
         sheet_order: 1,
@@ -51,7 +55,8 @@ var pdfs = [
         location_name: 'Profile',
         prefix: 'A',
         mp: 25.10,
-        file_name: 'a02500.p',
+        file_name: 'activity.pdf',
+        pathname: 'activity.pdf',
         subdivision: 'Southeast Sub',
         location_type: 'Profile',
         sheet_order: 1,
@@ -62,7 +67,8 @@ var pdfs = [
         location_name: 'Profile',
         prefix: 'A',
         mp: 25.10,
-        file_name: 'a02500.p',
+        file_name: 'activity.pdf',
+        pathname: 'activity.pdf',
         subdivision: 'Southeast Sub',
         location_type: 'Profile',
         sheet_order: 1,
@@ -73,7 +79,8 @@ var pdfs = [
         location_name: 'Profile',
         prefix: 'A',
         mp: 25.10,
-        file_name: 'a02500.p',
+        file_name: 'activity.pdf',
+        pathname: 'activity.pdf',
         subdivision: 'Southeast Sub',
         location_type: 'Profile',
         sheet_order: 1,
@@ -84,7 +91,8 @@ var pdfs = [
         location_name: 'Profile',
         prefix: 'A',
         mp: 25.10,
-        file_name: 'a02500.p',
+        file_name: 'activity.pdf',
+        pathname: 'activity.pdf',
         subdivision: 'Southeast Sub',
         location_type: 'Profile',
         sheet_order: 1,
@@ -95,7 +103,8 @@ var pdfs = [
         location_name: 'Profile',
         prefix: 'A',
         mp: 25.10,
-        file_name: 'a02500.p',
+        file_name: 'activity.pdf',
+        pathname: 'activity.pdf',
         subdivision: 'Southeast Sub',
         location_type: 'Profile',
         sheet_order: 1,
@@ -106,7 +115,8 @@ var pdfs = [
         location_name: 'Profile',
         prefix: 'A',
         mp: 25.10,
-        file_name: 'a02500.p',
+        file_name: 'activity.pdf',
+        pathname: 'activity.pdf',
         subdivision: 'Southeast Sub',
         location_type: 'Profile',
         sheet_order: 1,
@@ -117,7 +127,8 @@ var pdfs = [
         location_name: 'Profile',
         prefix: 'A',
         mp: 25.10,
-        file_name: 'a02500.p',
+        file_name: 'activity.pdf',
+        pathname: 'activity.pdf',
         subdivision: 'Southeast Sub',
         location_type: 'Profile',
         sheet_order: 1,
@@ -128,7 +139,8 @@ var pdfs = [
         location_name: 'Profile',
         prefix: 'A',
         mp: 25.10,
-        file_name: 'a02500.p',
+        file_name: 'activity.pdf',
+        pathname: 'activity.pdf',
         subdivision: 'Southeast Sub',
         location_type: 'Profile',
         sheet_order: 1,
@@ -139,6 +151,10 @@ const pdfAttributes = [
     {
         title: "Plan Type",
         field: "plan_type",
+        type: "SELECT",
+        options: [
+            "Profile", "Aspect", "Asset"
+        ]
     },
     {
         title: "Location Name",
@@ -147,10 +163,13 @@ const pdfAttributes = [
     {
         title: "Prefix",
         field: "prefix",
+        type: "SELECT",
+        options: ["A"]
     },
     {
         title: "MP",
         field: "mp",
+        type: "NUMBER"
     },
     {
         title: "File Name",
@@ -159,10 +178,20 @@ const pdfAttributes = [
     {
         title: "Subdivision",
         field: "subdivision",
+        type: "SELECT",
+        options: ["Southeast Sub"]
     },
     {
         title: "Location Type",
         field: "location_type",
+        type: "SELECT",
+        options: [
+            "Crossing",
+            "Signal",
+            "Interlocking",
+            "Profile",
+            "Indication",
+        ]
     },
     {
         title: "Sheet Order",
@@ -170,22 +199,21 @@ const pdfAttributes = [
     },
 ];
 
-export const getPdfRecords = () => [...pdfs];
+module.exports.getPdfRecords = () => [...pdfs];
 
-export const getPdfRecordsByType = (type) => {
-    const allRecords = getPdfRecords();
+module.exports.getPdfRecordsByType = (type) => {
     if (type === "all") {
-        return allRecords;
+        return pdfs;
     }
-    return allRecords.filter((rec) => rec.plan_type === type);
+    return pdfs.filter((rec) => rec.plan_type === type);
 }
 
-export const addPdf = (pdf) => {
+module.exports.addPdf = (pdf) => {
     pdfs.push(pdf);
 }
 
-export const getPdfAttributes = () => [...pdfAttributes];
+module.exports.getPdfAttributes = () => [...pdfAttributes];
 
-export const deletePdf = (id) => {
+module.exports.deletePdf = (id) => {
     pdfs = pdfs.filter((pdf) => pdf.id !== id);
 }

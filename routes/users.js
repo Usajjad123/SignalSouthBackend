@@ -25,7 +25,7 @@ router.delete('/:id', function(req, res, next) {
   res.send(user);
 });
 
-router.patch(':/id', function(req, res, next) {
+router.post(':/id', function(req, res, next) {
   const { id } = req.params;
   res.send(req.body)
 })
