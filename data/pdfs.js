@@ -147,7 +147,7 @@ var pdfs = [
     },
 ];
 
-const pdfAttributes = [
+var pdfAttributes = [
     {
         title: "Plan Type",
         field: "plan_type",
@@ -212,8 +212,12 @@ module.exports.addPdf = (pdf) => {
     pdfs.push(pdf);
 }
 
-module.exports.getPdfAttributes = () => [...pdfAttributes];
-
 module.exports.deletePdf = (id) => {
     pdfs = pdfs.filter((pdf) => pdf.id !== id);
 }
+
+module.exports.getPdfAttributes = () => [...pdfAttributes];
+
+module.exports.addPdfAttribute = async (attribute) => {
+    pdfAttributes.push(attribute);
+};

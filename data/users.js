@@ -26,6 +26,14 @@ const users = [
     },
 ];
 
+const adminUsers = [
+    {
+        id: '1',
+        role: 'ADMIN',
+        username: 'admin',
+        password: 'admin123'
+    }
+];
 
 module.exports.addUser = (user) => {
     console.log('user in store going to be pushed, ', user);
@@ -51,3 +59,13 @@ module.exports.updateUser = (id_, user) => {
         users[i] = user;
     }
 };
+
+module.exports.isAdmin = (username, password) => {
+    const admin = adminUsers.find((u) => u.username.toLowerCase() === username.toLowerCase() && u.password === password);
+    return admin;
+}
+
+module.exports.isValidUser = (username, password) => {
+    const user = users.find((u) => u.username.toLowerCase() === username.toLowerCase() && u.password === password);
+    return user;
+}

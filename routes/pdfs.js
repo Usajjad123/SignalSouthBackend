@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var { getPdfRecords, getPdfRecordsByType, getPdfAttributes, deletePdf } = require('./../data/pdfs');
+var { getPdfRecords, getPdfRecordsByType, getPdfAttributes, deletePdf, addPdfAttribute } = require('./../data/pdfs');
 
 /* GET users listing. */
 router.get('/', function (req, res, next) {
@@ -13,6 +13,16 @@ router.get('/fields', function (req, res, next) {
   const attributes = getPdfAttributes();
   res.send(attributes);
 });
+
+router.post('/fields/new', function (req, req) {
+  var data = req.body;
+  if (data.title && data.field) {
+    addPdfAttribute(data);
+    res.sendStatus(200);
+  } else {
+    res.status(400).send("DATA_INVALID");
+  }
+})
 
 router.get('/:type', function (req, res, next) {
   const { type } = req.params;
